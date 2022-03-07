@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>"Twitter"</title>
+    <!- Uses CSS to make the website eyecandy->
+    <style>
+      .title {
+        float: left;
+        margin-bottom: 20px;
+      }
+      .box {
+        width: 800px;
+        border: 20px solid skyblue;
+        padding: 20px;
+        margin: auto;
+      }
+      .button {
+        float: right;
+        margin-right: 25px;
+      }
+      .tweet {
+        width: 500px;
+        border: 8px solid skyblue;
+        padding: 20px;
+        margin: 20px;
+      }
+      .name {
+        font-weight: bold;
+        float: left;
+        margin-right: 10px;
+      }
+      .username {
+        font-weight: bold;
+      }
+      .id {
+        font-size: small;
+        font-style: italic;
+        float: right;
+      }
+      .time {
+        font-size: smaller;
+        font-style: italic;
+      }
+      p {
+        margin-right: 10px;
+        margin-bottom: 10px;
+      }
+      input {
+        margin-bottom: 25px;
+      }
+    </style>
+  </head>
+  <body>
+    <!- Places a box around "Twitter"->
+    <div class="box">
+      <h1 class="title">"Twitter"</h1>
+
+      <!- Initializes starting buttons->
+      <button class="button" type="Post" onclick="makePostText()">
+        Make Post
+      </button>
+      <br />
+      <br />
+      <button class="button" type="Get" onclick="findPostText()">
+        Find Post
+      </button>
+      <br />
+      <br />
+      <button class="button" type="Put" onclick="changeNameText()">
+        Change Name
+      </button>
+      <br />
+      <br />
+      <button class="button" type="Delete" onclick="deletePostText()">
+        Delete Post
+      </button>
+
+      <!- Contains all text boxes for inputs and connects buttons->
+      <!- Buttons and text boxes for making a tweet->
+      <p value="" hidden></p>
+      <p id="textInputTitle" value="" hidden>Tweet:</p>
+      <input type="text" id="textInput" value="" hidden />
+      <p id="tweetIDTitle" value="" hidden>Tweet ID:</p>
+      <input type="text" id="tweetID" value="" hidden />
+      <button id="postTweet" onclick="makePost()" value="" hidden>Post</button>
+
+      <!-Buttons and text boxes for changing a name->
+      <p id="nameTextTitle" value="" hidden>Name:</p>
+      <input type="text" id="nameText" value="" hidden />
+      <p id="newNameTextTitle" value="" hidden>New Screen Name:</p>
+      <input type="text" id="newNameText" value="" hidden />
+      <button id="updateName" onclick="changeName()" value="" hidden>
+        Update
+      </button>
+
+      <!- Buttons and text boxes for deleting a post->
+      <p id="deleteTextTitle" value="" hidden>Tweet ID:</p>
+      <input type="text" id="deleteText" value="" hidden />
+      <button id="deleteTweet" onclick="deletePost()" value="" hidden>
+        Delete
+      </button>
+
+      <!-Buttons and text boxes for finding a tweet->
+      <p id="findTextTitle" value="" hidden>Tweet ID:</p>
+      <input type="text" id="findText" value="" hidden />
+      <button id="findTweet" onclick="findPost()" value="" hidden>Find</button>
+
+      <!- Contains all elements of tweet 1 ->
+      <h2></h2>
+      <div class="tweet" id="tweet0">
+        <div class="name" id="tweet0userName"></div>
+        <div class="id" id="tweet0userID"></div>
+        <div class="username" id="tweet0userScreen_Name"></div>
+        <div id="tweet0text"></div>
+        <div class="time" id="tweet0time"></div>
+        <div class="id" id="tweet0ID"></div>
+      </div>
+
+      <!- Contains all elements of tweet 2 ->
+      <h2></h2>
+      <div class="tweet" id="tweet1">
+        <div class="name" id="tweet1userName"></div>
+        <div class="id" id="tweet1userID"></div>
+        <div class="username" id="tweet1userScreen_Name"></div>
+        <div id="tweet1text"></div>
+        <div class="time" id="tweet1time"></div>
+        <div class="id" id="tweet1ID"></div>
+      </div>
+
+      <!- Contains all elements of tweet 3 ->
+      <h2></h2>
+      <div class="tweet" id="tweet2">
+        <div class="name" id="tweet2userName"></div>
+        <div class="id" id="tweet2userID"></div>
+        <div class="username" id="tweet2userScreen_Name"></div>
+        <div id="tweet2text"></div>
+        <div class="time" id="tweet2time"></div>
+        <div class="id" id="tweet2ID"></div>
+      </div>
+
+      <!- Contains all elements of tweet 4 ->
+      <h2></h2>
+      <div class="tweet" id="tweet3">
+        <div class="name" id="tweet3userName"></div>
+        <div class="id" id="tweet3userID"></div>
+        <div class="username" id="tweet3userScreen_Name"></div>
+        <div id="tweet3text"></div>
+        <div class="time" id="tweet3time"></div>
+        <div class="id" id="tweet3ID"></div>
+      </div>
+
+      <!- Contains all elements of tweet 5 ->
+      <h2></h2>
+      <div class="tweet" id="tweet4">
+        <div class="name" id="tweet4userName"></div>
+        <div class="id" id="tweet4userID"></div>
+        <div class="username" id="tweet4userScreen_Name"></div>
+        <div id="tweet4text"></div>
+        <div class="time" id="tweet4time"></div>
+        <div class="id" id="tweet4ID"></div>
+      </div>
+
+      <!- Contains all elements of tweet 6 ->
+      <h2></h2>
+      <div class="tweet" id="tweet5" value="" hidden>
+        <div class="name" id="tweet5userName"></div>
+        <div class="id" id="tweet5userID"></div>
+        <div class="username" id="tweet5userScreen_Name"></div>
+        <div id="tweet5text"></div>
+        <div class="time" id="tweet5time"></div>
+        <div class="id" id="tweet5ID"></div>
+      </div>
+
+      <!- Contains all elements of tweet 7 ->
+      <h2></h2>
+      <div class="tweet" id="tweet6" value="" hidden>
+        <div class="name" id="tweet6userName"></div>
+        <div class="id" id="tweet6userID"></div>
+        <div class="username" id="tweet6userScreen_Name"></div>
+        <div id="tweet6text"></div>
+        <div class="time" id="tweet6time"></div>
+        <div class="id" id="tweet6ID"></div>
+      </div>
+
+      <!- Contains all elements of tweet 8 ->
+      <h2></h2>
+      <div class="tweet" id="tweet7" value="" hidden>
+        <div class="name" id="tweet7userName"></div>
+        <div class="id" id="tweet7userID"></div>
+        <div class="username" id="tweet7userScreen_Name"></div>
+        <div id="tweet7text"></div>
+        <div class="time" id="tweet7time"></div>
+        <div class="id" id="tweet7ID"></div>
+      </div>
+
+      <!- Contains all elements of tweet 9 ->
+      <h2></h2>
+      <div class="tweet" id="tweet8" value="" hidden>
+        <div class="name" id="tweet8userName"></div>
+        <div class="id" id="tweet8userID"></div>
+        <div class="username" id="tweet8userScreen_Name"></div>
+        <div id="tweet8text"></div>
+        <div class="time" id="tweet8time"></div>
+        <div class="id" id="tweet8ID"></div>
+      </div>
+
+      <!- Contains all elements of tweet 10 ->
+      <h2></h2>
+      <div class="tweet" id="tweet9" value="" hidden>
+        <div class="name" id="tweet9userName"></div>
+        <div class="id" id="tweet9userID"></div>
+        <div class="username" id="tweet9userScreen_Name"></div>
+        <div id="tweet9text"></div>
+        <div class="time" id="tweet9time"></div>
+        <div class="id" id="tweet9ID"></div>
+      </div>
+
+      <!- Contains all elements of tweet 11 ->
+      <h2></h2>
+      <div class="tweet" id="tweet10" value="" hidden>
+        <div class="name" id="tweet10userName"></div>
+        <div class="id" id="tweet10userID"></div>
+        <div class="username" id="tweet10userScreen_Name"></div>
+        <div id="tweet10text"></div>
+        <div class="time" id="tweet10time"></div>
+        <div class="id" id="tweet10ID"></div>
+      </div>
+
+      <!- Contains all elements of tweet 12 ->
+      <h2></h2>
+      <div class="tweet" id="tweet11" value="" hidden>
+        <div class="name" id="tweet11userName"></div>
+        <div class="id" id="tweet11userID"></div>
+        <div class="username" id="tweet11userScreen_Name"></div>
+        <div id="tweet11text"></div>
+        <div class="time" id="tweet11time"></div>
+        <div class="id" id="tweet11ID"></div>
+      </div>
+
+      <!- Contains all elements of tweet 13 ->
+      <h2></h2>
+      <div class="tweet" id="tweet12" value="" hidden>
+        <div class="name" id="tweet12userName"></div>
+        <div class="id" id="tweet12userID"></div>
+        <div class="username" id="tweet12userScreen_Name"></div>
+        <div id="tweet12text"></div>
+        <div class="time" id="tweet12time"></div>
+        <div class="id" id="tweet12ID"></div>
+      </div>
+
+      <!- Contains all elements of tweet 14 ->
+      <h2></h2>
+      <div class="tweet" id="tweet13" value="" hidden>
+        <div class="name" id="tweet13userName"></div>
+        <div class="id" id="tweet13userID"></div>
+        <div class="username" id="tweet13userScreen_Name"></div>
+        <div id="tweet13text"></div>
+        <div class="time" id="tweet13time"></div>
+        <div class="id" id="tweet13ID"></div>
+      </div>
+
+      <!- Contains all elements of tweet 15 ->
+      <h2></h2>
+      <div class="tweet" id="tweet14" value="" hidden>
+        <div class="name" id="tweet14userName"></div>
+        <div class="id" id="tweet14userID"></div>
+        <div class="username" id="tweet14userScreen_Name"></div>
+        <div id="tweet14text"></div>
+        <div class="time" id="tweet14time"></div>
+        <div class="id" id="tweet14ID"></div>
+      </div>
+
+      <!- Contains all elements of tweet 16 ->
+      <h2></h2>
+      <div class="tweet" id="tweet15" value="" hidden>
+        <div class="name" id="tweet15userName"></div>
+        <div class="id" id="tweet15userID"></div>
+        <div class="username" id="tweet15userScreen_Name"></div>
+        <div id="tweet15text"></div>
+        <div class="time" id="tweet15time"></div>
+        <div class="id" id="tweet15ID"></div>
+      </div>
+
+      <!- Contains all elements of tweet 17 ->
+      <h2></h2>
+      <div class="tweet" id="tweet16" value="" hidden>
+        <div class="name" id="tweet16userName"></div>
+        <div class="id" id="tweet16userID"></div>
+        <div class="username" id="tweet16userScreen_Name"></div>
+        <div id="tweet16text"></div>
+        <div class="time" id="tweet16time"></div>
+        <div class="id" id="tweet16ID"></div>
+      </div>
+
+      <!- Contains all elements of tweet 18 ->
+      <h2></h2>
+      <div class="tweet" id="tweet17" value="" hidden>
+        <div class="name" id="tweet17userName"></div>
+        <div class="id" id="tweet17userID"></div>
+        <div class="username" id="tweet17userScreen_Name"></div>
+        <div id="tweet17text"></div>
+        <div class="time" id="tweet17time"></div>
+        <div class="id" id="tweet17ID"></div>
+      </div>
+
+      <!- Contains all elements of tweet 19 ->
+      <h2></h2>
+      <div class="tweet" id="tweet18" value="" hidden>
+        <div class="name" id="tweet18userName"></div>
+        <div class="id" id="tweet18userID"></div>
+        <div class="username" id="tweet18userScreen_Name"></div>
+        <div id="tweet18text"></div>
+        <div class="time" id="tweet18time"></div>
+        <div class="id" id="tweet18ID"></div>
+      </div>
+
+      <!- Contains all elements of tweet 20 ->
+      <h2></h2>
+      <div class="tweet" id="tweet19" value="" hidden>
+        <div class="name" id="tweet19userName"></div>
+        <div class="id" id="tweet19userID"></div>
+        <div class="username" id="tweet19userScreen_Name"></div>
+        <div id="tweet19text"></div>
+        <div class="time" id="tweet19time"></div>
+        <div class="id" id="tweet19ID"></div>
+      </div>
+    </div>
+
+    <!- Incorporates the two src files->
+    <script type="text/javascript" src="./index.js"></script>
+    <script type="text/javascript" src="./server.js"></script>
+  </body>
+</html>
