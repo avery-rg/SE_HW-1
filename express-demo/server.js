@@ -250,3 +250,8 @@ function findPost(){
         }
     }
 }
+
+function test_print() {
+    consol.log('test code');
+
+}
